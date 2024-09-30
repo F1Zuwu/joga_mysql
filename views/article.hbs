@@ -1,6 +1,13 @@
 {{#article}}
     <h1>{{name}}</h1>
     <p>Published {{published}}</p>
+{{/article}}
+
+{{#author}}
+    <p>Author: {{name}}</p>
+{{/author}}
+
+{{#article}}
     <p><img src="/images/{{image}}"></img></p>
     {{{body}}}
 {{/article}}

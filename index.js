@@ -26,7 +26,7 @@ var con = mysql.createConnection({
     database: "mydb"
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
     if (err) throw err;
     console.log("Connected to joga_mysql db")
 })
@@ -49,8 +49,13 @@ app.get("/article/:slug", (req, res) => {
     con.query(query, (err, result) => {
         if (err) throw err;
         article = result
-        res.render("article", {
-            article: article
+        let query = `SELECT * FROM author WHERE id="${article[0].author_id}"`;
+        con.query(query, (err, result) => {
+            if (err) throw err;
+            res.render("article", {
+                article: article,
+                author: result[0]
+            })
         })
     })
 })
